@@ -16,6 +16,10 @@
             <p class="card-text">
                 <input type="text" v-model="message" />
             </p>
+            <p>
+                Cards: {{ cards.length }}
+                Charcounter: {{ amountOfChars }}
+            </p>
             <a href="#" class="btn btn-primary" v-on:click="addCard">Add Card</a>
         </div>
 
@@ -39,6 +43,13 @@
                     message: 'Hello Vue!',
                     cards: [],
                 }
+            },
+            computed: {
+                amountOfChars() {
+                    if(this.cards.length === 0) return 0
+
+                    return this.cards.map(c => c.content.length).reduce((pv, cv) => pv + cv)
+                },
             },
             methods: {
                 addCard() {
