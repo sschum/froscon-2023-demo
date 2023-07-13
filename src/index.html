@@ -16,6 +16,7 @@
             <p class="card-text">
                 <input type="text" v-model="message" />
             </p>
+            <a href="#" class="btn btn-primary" v-on:click="addCard">Add Card</a>
         </div>
     </div>
 
@@ -24,6 +25,11 @@
             data() {
                 return {
                     message: 'Hello Vue!'
+                }
+            },
+            methods: {
+                addCard() {
+                    alert(this.message)
                 }
             }
         })
