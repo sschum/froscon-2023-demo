@@ -18,18 +18,29 @@
             </p>
             <a href="#" class="btn btn-primary" v-on:click="addCard">Add Card</a>
         </div>
+
+        <div class="row">
+            <div class="col-6" v-for="card of cards">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ card }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
         const MyVueApp = Vue.createApp({
             data() {
                 return {
-                    message: 'Hello Vue!'
+                    message: 'Hello Vue!',
+                    cards: [],
                 }
             },
             methods: {
                 addCard() {
-                    alert(this.message)
+                    this.cards.push(this.message)
                 }
             }
         })
