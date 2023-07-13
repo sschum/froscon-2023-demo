@@ -4,7 +4,9 @@ MyVueApp.component('card', {
 <div class="card">
     <div :class="cssClass">
         <div class="card-body">
-            <h5 class="card-title"></h5>
+            <h5 class="card-title">
+                <slot></slot>
+            </h5>
         </div>
     </div>
 </div>
