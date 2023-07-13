@@ -6,6 +6,7 @@
 
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <script src="./js/vue.js"></script>
+    <script src="./js/vuex.js"></script>
     <script src="./js/vue-router.js"></script>
 
     <!-- "page components" -->
@@ -25,20 +26,42 @@
             </li>
         </ul>
 
+        <p>Store-Counter: {{ storeCount }}</p>
+
         <router-view></router-view>
     </div>
 
     <script>
+        const store = Vuex.createStore({
+            state(){
+                return {
+                    count: 0
+                }
+            },
+            mutations: {
+                increment (state) {
+                    state.count++
+                }
+            }
+        })
+
         const router = VueRouter.createRouter({
             history: VueRouter.createWebHashHistory(),
             routes: [
                 { path: "/hello", component: pages['hello'] },
                 { path: "/age", component: pages['age'] },
-            ]
+            ],
         })
 
-        const MyVueApp = Vue.createApp({})
+        const MyVueApp = Vue.createApp({
+            computed: {
+                storeCount(){
+                    return this.$store.state.count
+                }
+            }
+        })
         MyVueApp.use(router)
+        MyVueApp.use(store)
     </script>
     <script src="./js/card.js"></script>
     <script>

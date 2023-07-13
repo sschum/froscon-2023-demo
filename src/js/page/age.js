@@ -39,4 +39,9 @@ pages['age'] = {
             return this.hours / 24
         }
     },
+    watch: {
+        days(){
+            this.$store.commit('increment')
+        }
+    }
 }

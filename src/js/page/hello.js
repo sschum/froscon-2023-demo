@@ -45,12 +45,16 @@ pages['hello'] = {
     },
     methods: {
         addCard() {
+            this.$store.commit('increment')
+
             this.cards.push({
                 id: new Date().getTime(),
                 content: this.message,
             })
         },
         removeCard(i) {
+            this.$store.commit('increment')
+
             this.cards.splice(i, 1)
         }
     },
