@@ -20,10 +20,12 @@
         </div>
 
         <div class="row">
-            <div class="col-6" v-for="card of cards">
+            <div class="col-6" v-for="(card, i) of cards">
                 <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ card }}</h5>
+                    <div :class="i % 2 === 0 ? 'bg-primary' : 'bg-secondary'">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ card }}</h5>
+                        </div>
                     </div>
                 </div>
             </div>
