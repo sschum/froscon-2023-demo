@@ -26,7 +26,8 @@
 
         <div class="row">
             <div class="col-6" v-for="(card, i) of cards" :key="card.id">
-                <card :css-class="i % 2 === 0 ? 'bg-primary' : 'bg-secondary'">
+                <card :css-class="i % 2 === 0 ? 'bg-primary' : 'bg-secondary'"
+                      v-on:card-click="removeCard(i)">
                     {{ card.content }} ({{ card.id }})
                 </card>
             </div>
