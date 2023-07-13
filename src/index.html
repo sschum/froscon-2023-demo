@@ -67,6 +67,11 @@
                 removeCard(i) {
                     this.cards.splice(i, 1)
                 }
+            },
+            watch: {
+                message(newValue) {
+                    console.log("Message changed: ", newValue)
+                }
             }
         })
         MyVueApp.mount('#app')
