@@ -26,13 +26,7 @@
 
         <div class="row">
             <div class="col-6" v-for="(card, i) of cards" :key="card.id">
-                <div class="card" v-on:click="removeCard(i)">
-                    <div :class="i % 2 === 0 ? 'bg-primary' : 'bg-secondary'">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ card.content }} ({{ card.id }})</h5>
-                        </div>
-                    </div>
-                </div>
+                <card></card>
             </div>
         </div>
     </div>
@@ -74,6 +68,9 @@
                 }
             }
         })
+    </script>
+    <script src="./js/card.js"></script>
+    <script>
         MyVueApp.mount('#app')
     </script>
 </body>
