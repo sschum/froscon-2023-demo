@@ -20,11 +20,11 @@
         </div>
 
         <div class="row">
-            <div class="col-6" v-for="(card, i) of cards">
-                <div class="card">
+            <div class="col-6" v-for="(card, i) of cards" :key="card.id">
+                <div class="card" v-on:click="removeCard(i)">
                     <div :class="i % 2 === 0 ? 'bg-primary' : 'bg-secondary'">
                         <div class="card-body">
-                            <h5 class="card-title">{{ card }}</h5>
+                            <h5 class="card-title">{{ card.content }} ({{ card.id }})</h5>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,13 @@
             },
             methods: {
                 addCard() {
-                    this.cards.push(this.message)
+                    this.cards.push({
+                        id: new Date().getTime(),
+                        content: this.message,
+                    })
+                },
+                removeCard(i) {
+                    this.cards.splice(i, 1)
                 }
             }
         })
