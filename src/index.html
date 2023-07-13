@@ -6,71 +6,39 @@
 
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <script src="./js/vue.js"></script>
+    <script src="./js/vue-router.js"></script>
+
+    <!-- "page components" -->
+    <script src="./js/page/hello.js"></script>
+    <script src="./js/page/age.js"></script>
 </head>
 <body class="container">
     <h1>Hello World</h1>
 
     <div class="card" id="app">
-        <div class="card-body">
-            <h5 class="card-title">{{ message }}</h5>
-            <p class="card-text">
-                <input type="text" v-model="message" />
-            </p>
-            <p>
-                Cards: {{ cards.length }}
-                Charcounter: {{ amountOfChars }}
-                Average Chars: {{ averageCharsAmount }}
-            </p>
-            <a href="#" class="btn btn-primary" v-on:click="addCard">Add Card</a>
-        </div>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <router-link to="/hello">Hello Vue!</router-link>
+            </li>
+            <li class="list-group-item">
+                <router-link to="/age">Wie alt bin ich?</router-link>
+            </li>
+        </ul>
 
-        <div class="row">
-            <div class="col-6" v-for="(card, i) of cards" :key="card.id">
-                <card :css-class="i % 2 === 0 ? 'bg-primary' : 'bg-secondary'"
-                      v-on:card-click="removeCard(i)">
-                    {{ card.content }} ({{ card.id }})
-                </card>
-            </div>
-        </div>
+        <router-view></router-view>
     </div>
 
     <script>
-        const MyVueApp = Vue.createApp({
-            data() {
-                return {
-                    message: 'Hello Vue!',
-                    cards: [],
-                }
-            },
-            computed: {
-                amountOfChars() {
-                    if(this.cards.length === 0) return 0
-
-                    return this.cards.map(c => c.content.length).reduce((pv, cv) => pv + cv)
-                },
-                averageCharsAmount() {
-                    if(this.amountOfChars === 0) return 0
-
-                    return this.amountOfChars / this.cards.length
-                }
-            },
-            methods: {
-                addCard() {
-                    this.cards.push({
-                        id: new Date().getTime(),
-                        content: this.message,
-                    })
-                },
-                removeCard(i) {
-                    this.cards.splice(i, 1)
-                }
-            },
-            watch: {
-                message(newValue) {
-                    console.log("Message changed: ", newValue)
-                }
-            }
+        const router = VueRouter.createRouter({
+            history: VueRouter.createWebHashHistory(),
+            routes: [
+                { path: "/hello", component: pages['hello'] },
+                { path: "/age", component: pages['age'] },
+            ]
         })
+
+        const MyVueApp = Vue.createApp({})
+        MyVueApp.use(router)
     </script>
     <script src="./js/card.js"></script>
     <script>
